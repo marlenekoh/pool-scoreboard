@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "react-native";
 import { NavigationScreenProp } from "react-navigation";
 
+import { Button } from "@components/Button";
 import { Text } from "@components/Text";
 import { Routes } from "@screens/Routes";
 
