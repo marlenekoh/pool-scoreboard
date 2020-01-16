@@ -1,14 +1,17 @@
-import React from 'react';
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import { Text } from 'react-native';
+import React from "react";
+import { StatusBar } from "react-native";
 
-import { AppView } from "./AppView";
+import { AppContainer } from "./AppContainer";
 
-export default function App() {
+const App: React.FunctionComponent = () => {
+  // TODO: Load async fonts here
+  // https://docs.expo.io/versions/latest/guides/using-custom-fonts/
   return (
-    <AppView>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </AppView>
+    <>
+      <StatusBar hidden />
+      <AppContainer />
+    </>
   );
-}
+};
+
+export default App;

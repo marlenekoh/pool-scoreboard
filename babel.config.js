@@ -3,12 +3,15 @@ module.exports = function(api) {
   return {
     presets: ["babel-preset-expo"],
     plugins: [
-      "module-resolver",
-      {
-        alias: {
-          "@components": "./src/components"
-        }
-      }
-    ]
+      [
+        "module-resolver",
+        {
+          alias: {
+            "@components": "./src/components",
+            "@screens": "./src/screens",
+          },
+        },
+      ],
+    ],
   };
 };

@@ -1,10 +1,32 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Button } from "react-native";
+import { NavigationScreenProp } from "react-navigation";
 
-export const HomeScreen: React.FunctionComponent = () => {
+import { Text } from "@components/Text";
+import { Routes } from "@screens/Routes";
+
+import { HomeScreenContainer } from "./HomeScreenContainer";
+
+interface HomescreenProps {
+  navigation: NavigationScreenProp<any>;
+}
+
+export const HomeScreen: React.FunctionComponent<HomescreenProps> = ({
+  navigation,
+}) => {
   return (
-    <View>
-      <Text>This is the Home Page. Include options to create a new game.</Text>
-    </View>
+    <HomeScreenContainer>
+      <Text>
+        This is the Home PAGE.
+        {"\n"}
+        Include options to create a new game.
+      </Text>
+      <Button
+        title="Click to go to Game Screen"
+        onPress={() => {
+          navigation.navigate(Routes.GAME);
+        }}
+      />
+    </HomeScreenContainer>
   );
 };
