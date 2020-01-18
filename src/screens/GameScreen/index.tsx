@@ -3,14 +3,14 @@ import { NavigationScreenProp } from "react-navigation";
 import { View, StyleSheet } from "react-native";
 
 import { Button } from "@components/Button";
-import { Text } from "@components/Text";
 import { Routes } from "@screens/Routes";
 import { Timer } from "@components/Timer";
+import { Score } from "@components/Score";
 
 import { GameScreenContainer } from "./GameScreenContainer";
-import { Input } from "@components/Input";
 import { SettingsButton } from "./Settings/SettingsButton";
-import { Score } from "@components/Score";
+import { Player } from "./Player";
+import { PlayerSectionContainer } from "./PlayerSectionContainer";
 
 interface GameScreenProps {
   navigation: NavigationScreenProp<any>;
@@ -21,11 +21,10 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
 }) => {
   return (
     <GameScreenContainer>
-      <Input />
-      <Button
-        title="Click to go to Home Screen"
-        onPress={() => navigation.navigate(Routes.HOME)}
-      />
+      <PlayerSectionContainer>
+        <Player playerNumber={1} />
+        <Player playerNumber={2} />
+      </PlayerSectionContainer>
       <Timer />
       <Score />
       <View style={{flexDirection: "row",
@@ -42,10 +41,13 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
         </View>
       </View>
       <SettingsButton />
+      <Button
+        title="Click to go to Home Screen"
+        onPress={() => navigation.navigate(Routes.HOME)}
+      />
     </GameScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
-
 });
