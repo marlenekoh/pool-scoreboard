@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavigationScreenProp } from "react-navigation";
 import { View, StyleSheet } from "react-native";
 
 import { Button } from "@components/Button";
 import { Routes } from "@screens/Routes";
 import { Timer } from "@components/Timer";
-import { Score } from "@components/Score";
 
 import { GameScreenContainer } from "./GameScreenContainer";
 import { SettingsButton } from "./Settings/SettingsButton";
@@ -20,25 +19,53 @@ interface GameScreenProps {
 export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
   navigation,
 }) => {
+  const [isTimeStart, setTimeStart] = useState(true);
+
+  const [isReset, setIsReset] = useState(false);
+
+  const startTime = () => {
+    setIsReset(false);
+    setTimeStart(true);
+  };
+
+  const endTime = () => {
+    setIsReset(true);
+    setTimeStart(false);
+  };
+
   return (
     <GameScreenContainer>
       <PlayerSectionContainer>
         <Player playerNumber={1} />
         <Player playerNumber={2} />
       </PlayerSectionContainer>
-      <Timer />
-      <Score maxValue={5}/>
-      <View style={{flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    paddingTop: 100}}>
+      <Timer isTimeStart={isTimeStart} isReset={isReset} />
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          paddingTop: 100,
+        }}
+      >
+        {!isTimeStart && (
+          <View>
+            <Button title="Resume" onPress={startTime} />
+          </View>
+        )}
         <View>
           <Button
-            title="Resume"/>
-        </View>
-        <View>
-          <Button
-            title="Reset"/>
+            title={isTimeStart ? "Stop" : "Reset"}
+            onPress={() => {
+              if (isTimeStart) {
+                setTimeStart(false);
+                setIsReset(false);
+              } else {
+                setIsReset(true);
+              }
+            }}
+          />
+          {/* TODO restart timer */}
         </View>
       </View>
       <SettingsButton />
@@ -52,5 +79,4 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create({});

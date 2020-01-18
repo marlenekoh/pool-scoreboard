@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CountDown from "react-native-countdown-component";
 
-export const Timer: React.FunctionComponent = () => {
+interface Time {
+  isTimeStart: boolean;
+  isReset: boolean;
+}
+
+export const Timer: React.FunctionComponent<Time> = ({
+  isTimeStart,
+  isReset,
+}) => {
+  // const [id, setid] = useState(0);
+
+  // useEffect(() => {
+  //   if (isReset) setid(id + 1);
+  // });
+
   return (
     <CountDown
+      // id={`$(id + 1)`}
       until={10}
       onFinish={() => {
-        /* TODO: on finish */
+        isReset = true;
       }}
-      onPress={() => alert("Starting Shot Clock")}
+      running={isTimeStart}
       timeToShow={["S"]}
       digitStyle={{
         backgroundColor: "#FFF",
@@ -17,7 +32,8 @@ export const Timer: React.FunctionComponent = () => {
       }}
       digitTxtStyle={{ color: "#1CC625" }}
       timeLabelStyle={{ color: "black", fontWeight: "bold" }}
-      size={20}
+      size={50}
+      timeLabels={{}}
     />
   );
 };

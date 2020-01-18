@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { CheckBox as FoulIcon } from 'react-native-elements';
 
 export const CheckBox = () => {
+  const [isFoul, setIsFoul] = useState(false);
+
+  const toggleIsFoul = () => {
+    setIsFoul(!isFoul);
+  };
+
   return (
     <FoulIcon
-      style={{flex: 1, padding: 10}}
       center
-      title='Click Here to Remove This Item'
-      iconRight
-      iconType='material'
-      checkedIcon='clear'
-      uncheckedIcon='add'
-      checkedColor='red'
+      title='Foul'
+      checkedIcon='dot-circle-o'
+      uncheckedIcon='circle-o'
+      checked={isFoul}
+      onPress={toggleIsFoul}
     />
   )
 }
