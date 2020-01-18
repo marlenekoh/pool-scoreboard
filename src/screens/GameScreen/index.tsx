@@ -36,6 +36,10 @@ export const GameScreen: React.FunctionComponent = () => {
         </View>
       </View>
       <SettingsButton />
+      <Button
+        title="Click to go to Home Screen"
+        onPress={() => navigation.navigate(Routes.HOME)}
+      />
       <CheckBox />
       <SettingsButton />
     </GameScreenContainer>

@@ -17,6 +17,7 @@ const transitionConfig: TransitionSpec = {
 
 const MainNavigator = createStackNavigator(
   {
+    [Routes.HOME]: { screen: HomeScreen },
     [Routes.GAME]: { screen: GameScreen },
   },
   {
