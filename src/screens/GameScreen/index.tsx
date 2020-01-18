@@ -1,25 +1,17 @@
 import React from "react";
-import { NavigationScreenProp } from "react-navigation";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 
 import { Button } from "@components/Button";
-import { Routes } from "@screens/Routes";
 import { Timer } from "@components/Timer";
 import { Score } from "@components/Score";
+import { CheckBox } from "@components/Checkbox";
 
 import { GameScreenContainer } from "./GameScreenContainer";
 import { SettingsButton } from "./Settings/SettingsButton";
-import { CheckBox } from "@components/Checkbox";
 import { Player } from "./Player";
 import { PlayerSectionContainer } from "./PlayerSectionContainer";
 
-interface GameScreenProps {
-  navigation: NavigationScreenProp<any>;
-}
-
-export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
-  navigation,
-}) => {
+export const GameScreen: React.FunctionComponent = () => {
   return (
     <GameScreenContainer>
       <PlayerSectionContainer>
@@ -49,5 +41,3 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
     </GameScreenContainer>
   );
 };
-
-const styles = StyleSheet.create({});
