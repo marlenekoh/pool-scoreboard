@@ -10,6 +10,7 @@ import { GameScreenContainer } from "./GameScreenContainer";
 import { Input } from "@components/Input";
 import { SettingsButton } from "./Settings/SettingsButton";
 import { Score } from "@components/Score";
+import { CheckBox } from "@components/Checkbox";
 
 interface GameScreenProps {
   navigation: NavigationScreenProp<any>;
@@ -26,7 +27,9 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
         onPress={() => navigation.navigate(Routes.HOME)}
       />
       <Timer />
-      <Score />
+      <Score maxValue={5}/>
+      <Text>Race to 5</Text>
+      <CheckBox />
       <SettingsButton />
     </GameScreenContainer>
   );
