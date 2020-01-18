@@ -6,6 +6,7 @@ import { Text } from "@components/Text";
 import { Routes } from "@screens/Routes";
 
 import { GameScreenContainer } from "./GameScreenContainer";
+import { Timer } from "@components/Timer";
 
 interface GameScreenProps {
   navigation: NavigationScreenProp<any>;
@@ -25,6 +26,7 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
         title="Click to go to Home Screen"
         onPress={() => navigation.navigate(Routes.HOME)}
       />
+      <Timer/>
     </GameScreenContainer>
   );
 };

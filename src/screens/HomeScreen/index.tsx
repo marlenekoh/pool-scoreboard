@@ -16,7 +16,7 @@ export const HomeScreen: React.FunctionComponent<HomescreenProps> = ({
 }) => {
   return (
     <HomeScreenContainer>
-      <Text>
+      <Text placeholder="Player 1">
         This is the Home PAGE.
         {"\n"}
         Include options to create a new game.
