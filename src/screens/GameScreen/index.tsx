@@ -1,17 +1,25 @@
 import React from "react";
-import { View } from "react-native";
+import { NavigationScreenProp } from "react-navigation";
+import { View, StyleSheet } from "react-native";
 
 import { Button } from "@components/Button";
+import { Routes } from "@screens/Routes";
 import { Timer } from "@components/Timer";
 import { Score } from "@components/Score";
-import { CheckBox } from "@components/Checkbox";
 
 import { GameScreenContainer } from "./GameScreenContainer";
 import { SettingsButton } from "./Settings/SettingsButton";
+import { CheckBox } from "@components/Checkbox";
 import { Player } from "./Player";
 import { PlayerSectionContainer } from "./PlayerSectionContainer";
 
-export const GameScreen: React.FunctionComponent = () => {
+interface GameScreenProps {
+  navigation: NavigationScreenProp<any>;
+}
+
+export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
+  navigation,
+}) => {
   return (
     <GameScreenContainer>
       <PlayerSectionContainer>
@@ -36,8 +44,14 @@ export const GameScreen: React.FunctionComponent = () => {
         </View>
       </View>
       <SettingsButton />
+      <Button
+        title="Click to go to Home Screen"
+        onPress={() => navigation.navigate(Routes.HOME)}
+      />
       <CheckBox />
       <SettingsButton />
     </GameScreenContainer>
   );
 };
+
+const styles = StyleSheet.create({});
