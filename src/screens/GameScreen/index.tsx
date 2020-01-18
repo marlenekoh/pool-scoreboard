@@ -7,9 +7,9 @@ import { Routes } from "@screens/Routes";
 import { Timer } from "@components/Timer";
 
 import { GameScreenContainer } from "./GameScreenContainer";
-import { Timer } from "@components/Timer";
 import { Input } from "@components/Input";
 import { SettingsButton } from "./Settings/SettingsButton";
+import { Score } from "@components/Score";
 
 interface GameScreenProps {
   navigation: NavigationScreenProp<any>;
@@ -20,12 +20,13 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
 }) => {
   return (
     <GameScreenContainer>
-      <Input/>
+      <Input />
       <Button
         title="Click to go to Home Screen"
         onPress={() => navigation.navigate(Routes.HOME)}
       />
       <Timer />
+      <Score />
       <SettingsButton />
     </GameScreenContainer>
   );
