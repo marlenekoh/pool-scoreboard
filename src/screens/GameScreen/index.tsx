@@ -2,14 +2,14 @@ import React from "react";
 import { NavigationScreenProp } from "react-navigation";
 
 import { Button } from "@components/Button";
-import { Text } from "@components/Text";
 import { Routes } from "@screens/Routes";
 import { Timer } from "@components/Timer";
+import { Score } from "@components/Score";
 
 import { GameScreenContainer } from "./GameScreenContainer";
-import { Input } from "@components/Input";
 import { SettingsButton } from "./Settings/SettingsButton";
-import { Score } from "@components/Score";
+import { Player } from "./Player";
+import { PlayerSectionContainer } from "./PlayerSectionContainer";
 
 interface GameScreenProps {
   navigation: NavigationScreenProp<any>;
@@ -20,14 +20,17 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
 }) => {
   return (
     <GameScreenContainer>
-      <Input />
+      <PlayerSectionContainer>
+        <Player playerNumber={1} />
+        <Player playerNumber={2} />
+      </PlayerSectionContainer>
+      <Timer />
+      <Score />
+      <SettingsButton />
       <Button
         title="Click to go to Home Screen"
         onPress={() => navigation.navigate(Routes.HOME)}
       />
-      <Timer />
-      <Score />
-      <SettingsButton />
     </GameScreenContainer>
   );
 };

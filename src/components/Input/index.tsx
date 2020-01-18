@@ -3,14 +3,10 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { TextInput, StyleSheet } from "react-native";
 import { Input as ReactNativeInput } from "react-native-elements";
 
-export const Input = () => {
-  return (
-    <ReactNativeInput
-      placeholder="Name"
-      label="Player 1"
-      style={styles.input}
-    />
-  );
+interface InputProps extends React.ComponentProps<typeof ReactNativeInput> {}
+
+export const Input: React.FunctionComponent<InputProps> = props => {
+  return <ReactNativeInput {...props} style={styles.input} />;
 };
 
 const styles = StyleSheet.create({
