@@ -4,9 +4,10 @@ import { NavigationScreenProp } from "react-navigation";
 import { Button } from "@components/Button";
 import { Text } from "@components/Text";
 import { Routes } from "@screens/Routes";
+import { Timer } from "@components/Timer";
 
 import { GameScreenContainer } from "./GameScreenContainer";
-import { Timer } from "@components/Timer";
+import { SettingsButton } from "./Settings/SettingsButton";
 
 interface GameScreenProps {
   navigation: NavigationScreenProp<any>;
@@ -26,7 +27,8 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
         title="Click to go to Home Screen"
         onPress={() => navigation.navigate(Routes.HOME)}
       />
-      <Timer/>
+      <Timer />
+      <SettingsButton />
     </GameScreenContainer>
   );
 };
