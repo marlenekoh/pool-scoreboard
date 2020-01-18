@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "react-native";
 import { NavigationScreenProp } from "react-navigation";
 
 import { Text } from "@components/Text";
+import { Button } from "@components/Button";
 import { Routes } from "@screens/Routes";
 
 import { GameScreenContainer } from "./GameScreenContainer";
@@ -22,7 +22,7 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
         Show current player's score and shot clock here.
       </Text>
       <Button
-        title="Click to go to Home Screen"
+        text="Click to go to Home Screen"
         onPress={() => navigation.navigate(Routes.HOME)}
       />
     </GameScreenContainer>
