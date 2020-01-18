@@ -9,6 +9,7 @@ import { Score } from "@components/Score";
 
 import { GameScreenContainer } from "./GameScreenContainer";
 import { SettingsButton } from "./Settings/SettingsButton";
+import { CheckBox } from "@components/Checkbox";
 import { Player } from "./Player";
 import { PlayerSectionContainer } from "./PlayerSectionContainer";
 
@@ -26,7 +27,7 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
         <Player playerNumber={2} />
       </PlayerSectionContainer>
       <Timer />
-      <Score />
+      <Score maxValue={5}/>
       <View style={{flexDirection: "row",
                     alignItems: "center",
                     justifyContent: "center",
@@ -45,6 +46,8 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
         title="Click to go to Home Screen"
         onPress={() => navigation.navigate(Routes.HOME)}
       />
+      <CheckBox />
+      <SettingsButton />
     </GameScreenContainer>
   );
 };
