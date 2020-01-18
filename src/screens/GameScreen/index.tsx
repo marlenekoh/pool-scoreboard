@@ -47,8 +47,5 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
 };
 
 const styles = StyleSheet.create({
-  bottomButtonContainer: {flexDirection: "row",
-                          alignItems: "center",
-                    justifyContent: "center",
-                    paddingTop: 100
+
 });
