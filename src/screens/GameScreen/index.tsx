@@ -7,7 +7,6 @@ import { Routes } from "@screens/Routes";
 import { Timer } from "@components/Timer";
 
 import { GameScreenContainer } from "./GameScreenContainer";
-import { Timer } from "@components/Timer";
 import { Input } from "@components/Input";
 import { SettingsButton } from "./Settings/SettingsButton";
 
