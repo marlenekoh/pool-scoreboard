@@ -27,30 +27,27 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
         <Player playerNumber={2} />
       </PlayerSectionContainer>
       <Timer />
-      <Score maxValue={5}/>
-      <View style={{flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    paddingTop: 100}}>
+      <Score maxValue={5} />
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          paddingTop: 100,
+        }}
+      >
         <View>
-          <Button
-            title="Resume"/>
+          <Button title="Resume" />
         </View>
         <View>
-          <Button
-            title="Reset"/>
+          <Button title="Reset" />
         </View>
       </View>
       <SettingsButton />
-      <Button
-        title="Click to go to Home Screen"
-        onPress={() => navigation.navigate(Routes.HOME)}
-      />
       <CheckBox />
       <SettingsButton />
     </GameScreenContainer>
   );
 };
 
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create({});
