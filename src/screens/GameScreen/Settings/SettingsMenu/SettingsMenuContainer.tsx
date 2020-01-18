@@ -7,7 +7,7 @@ export const SettingsMenuContainer = styled.View`
   right: 25;
 
   width: 150px;
-  height: 130px;
+  height: 40px;
   border-radius: 15px;
   background: white;
 `;

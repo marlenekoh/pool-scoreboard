@@ -13,16 +13,6 @@ export const SettingsMenu: React.FunctionComponent = () => {
         type="clear"
         icon={<Icon name="plus" />}
       />
-      <Button
-        title="  Restart Game"
-        type="clear"
-        icon={<Icon name="refresh-ccw" />}
-      />
-      <Button
-        title="   More Options"
-        type="clear"
-        icon={<Icon name="more-horizontal" />}
-      />
     </SettingsMenuContainer>
   );
 };
