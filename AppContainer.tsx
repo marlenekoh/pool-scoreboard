@@ -3,7 +3,7 @@ import { createStackNavigator } from "react-navigation-stack";
 
 import { HomeScreen } from "@screens/HomeScreen";
 import { GameScreen } from "@screens/GameScreen";
-import { Routes } from "@screens/Routes";
+import { Routes } from "@common/Routes";
 import { TransitionSpec } from "react-navigation-stack/lib/typescript/src/vendor/types";
 import { Easing } from "react-native";
 

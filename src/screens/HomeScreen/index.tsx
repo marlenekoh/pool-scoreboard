@@ -3,7 +3,7 @@ import { Button } from "react-native";
 import { NavigationScreenProp } from "react-navigation";
 
 import { Text } from "@components/Text";
-import { Routes } from "@screens/Routes";
+import { Routes } from "@common/Routes";
 
 import { HomeScreenContainer } from "./HomeScreenContainer";
 

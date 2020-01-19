@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 
 export const ButtonContainer = styled.TouchableOpacity`
-  align-self: center;
+  align-self: flex-start;
   flex-wrap: wrap;
   align-items: flex-start;
   flex-direction: row;
