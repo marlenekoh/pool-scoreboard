@@ -67,6 +67,7 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
             />
           </IconContainer>
         )}
+        {/** TODO: Update text size acc to button size */}
         {text && <Text>{text}</Text>}
       </>
     </ButtonContainer>

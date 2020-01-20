@@ -2,7 +2,10 @@ import React, { useState } from "react";
 
 import { Button } from "@components/Button";
 
-import { TimerText } from "./TimerText";
+import { TimerWheel } from "./TimerWheel";
+import { TimerButtonContainer } from "./TimerButtonContainer";
+import { TimerContainer } from "./TimerContainer";
+import { TimerButtonGroupContainer } from "./TimerButtonGroupContainer";
 
 interface TimerProps {
   // Duration in seconds
@@ -10,26 +13,54 @@ interface TimerProps {
 }
 
 export const Timer: React.FunctionComponent<TimerProps> = ({ duration }) => {
+  const [hasStarted, setHasStarted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [key, setKey] = useState("0");
 
   const refreshTimer = () => {
     setKey(new Date().getTime().toString());
-    setIsPlaying(true);
+    setHasStarted(false);
+    setIsPlaying(false);
   };
 
+  const showStart = !hasStarted;
+  const showPause = hasStarted && isPlaying;
+
   return (
-    <>
-      <TimerText
+    <TimerContainer>
+      <TimerWheel
         key={key}
         isPlaying={isPlaying}
         duration={duration}
         onFinish={refreshTimer}
       />
-      <Button text="Start" onPress={() => setIsPlaying(true)} />
-      <Button text="Reset" onPress={refreshTimer} />
-      <Button text="Pause" onPress={() => setIsPlaying(false)} />
-      <Button text="Resume" onPress={() => setIsPlaying(true)} />
-    </>
+      <TimerButtonGroupContainer>
+        {showStart && (
+          <TimerButtonContainer>
+            <Button
+              text="Start"
+              onPress={() => {
+                setHasStarted(true), setIsPlaying(true);
+              }}
+            />
+          </TimerButtonContainer>
+        )}
+        {showPause && (
+          <TimerButtonContainer>
+            <Button text="Pause" onPress={() => setIsPlaying(false)} />
+          </TimerButtonContainer>
+        )}
+        {!showStart && !showPause && (
+          <>
+            <TimerButtonContainer>
+              <Button text="Resume" onPress={() => setIsPlaying(true)} />
+            </TimerButtonContainer>
+            <TimerButtonContainer>
+              <Button text="Reset" onPress={refreshTimer} />
+            </TimerButtonContainer>
+          </>
+        )}
+      </TimerButtonGroupContainer>
+    </TimerContainer>
   );
 };
