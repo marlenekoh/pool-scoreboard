@@ -1,24 +1,33 @@
 import React from "react";
 
-import { Label } from "@components/Label";
 import { Input } from "@components/Input";
+import { Text } from "@components/Text";
 
 import { Score } from "./Score";
 import { PlayerContainer } from "./PlayerContainer";
 import { NameInputContainer } from "./NameInputContainer";
 
-interface PlayerProps {
+interface PlayerProps extends React.ComponentProps<typeof Score> {
   index: number;
 }
 
-export const Player: React.FunctionComponent<PlayerProps> = ({ index }) => {
+export const Player: React.FunctionComponent<PlayerProps> = ({
+  index,
+  ...otherProps
+}) => {
   return (
     <PlayerContainer>
-      <Label title={`Player ${index}`} />
       <NameInputContainer>
-        <Input showSubmitButtonOnFocus placeholder="Enter Name" />
+        <Text bold uppercase h4>
+          {`Player ${index}`}
+        </Text>
+        <Input
+          showSubmitButtonOnFocus
+          autoCorrect={false}
+          placeholder="Enter Name"
+        />
       </NameInputContainer>
-      <Score max={5} />
+      <Score {...otherProps} />
     </PlayerContainer>
   );
 };

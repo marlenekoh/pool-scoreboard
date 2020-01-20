@@ -3,16 +3,25 @@ import { TextInput } from "react-native";
 
 import { Button } from "@components/Button";
 import { Colors } from "@common/Colors";
+import {
+  getFontSizeFromProps,
+  TextStyleProps,
+} from "@common/getFontSizeFromProps";
+import { getButtonSizeFromFontSize } from "@common/getButtonSizeFromFontSize";
 
 import { InputContainer } from "./InputContainer";
 import { InputTextContainer } from "./InputTextContainer";
 
-interface InputProps extends React.ComponentProps<typeof TextInput> {
+interface InputProps
+  extends React.ComponentProps<typeof TextInput>,
+    TextStyleProps {
   showSubmitButtonOnFocus?: boolean;
+  textAlign?: "left" | "center" | "right";
 }
 
 export const Input: React.FunctionComponent<InputProps> = ({
   showSubmitButtonOnFocus,
+  textAlign = "left",
   ...otherProps
 }) => {
   const [focused, setFocused] = useState(false);
@@ -26,25 +35,29 @@ export const Input: React.FunctionComponent<InputProps> = ({
     }
   });
 
+  const fontSize = getFontSizeFromProps(otherProps);
+  const buttonSize = getButtonSizeFromFontSize(fontSize);
+
   return (
     <InputContainer>
       <InputTextContainer focused={focused}>
         <TextInput
           ref={inputRef}
+          style={{ fontSize, textAlign }}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           {...otherProps}
         />
       </InputTextContainer>
-      <Button
-        minimal
-        size="small"
-        icon="check"
-        iconColor={
-          showSubmitButtonOnFocus && focused ? Colors.black : Colors.transparent
-        }
-        onPress={() => setFocused(false)}
-      />
+      {showSubmitButtonOnFocus && focused && (
+        <Button
+          minimal
+          size={buttonSize}
+          icon="check"
+          iconColor={Colors.black}
+          onPress={() => setFocused(false)}
+        />
+      )}
     </InputContainer>
   );
 };

@@ -40,9 +40,9 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
       case "small":
         return 16;
       case "medium":
-        return 32;
+        return 24;
       case "large":
-        return 48;
+        return 32;
     }
   };
 

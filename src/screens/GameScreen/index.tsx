@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavigationScreenProp } from "react-navigation";
 
 import { Timer } from "@components/Timer";
 import { Button } from "@components/Button";
 import { Routes } from "@common/Routes";
+import { Divider } from "@components/Divider";
 
 import { GameScreenContainer } from "./GameScreenContainer";
 import { Player } from "./Player";
@@ -17,12 +18,17 @@ interface GameScreenProps {
 export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
   navigation,
 }) => {
+  const [raceTo, setRaceTo] = useState(0);
   return (
     <GameScreenContainer>
-      <Race />
+      <Race
+        defaultRaceTo={0}
+        onRaceToChange={newValue => setRaceTo(newValue)}
+      />
       <PlayerSectionContainer>
-        <Player index={1} />
-        <Player index={2} />
+        <Player index={1} min={0} max={raceTo} />
+        <Divider vertical />
+        <Player index={2} min={0} max={raceTo} />
       </PlayerSectionContainer>
       <Timer duration={10} />
       <Button
