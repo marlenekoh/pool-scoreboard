@@ -21,7 +21,8 @@ export const Score: React.FunctionComponent<ScoreProps> = ({
     <ScoreContainer>
       <ScoreButtonContainer>
         <Button
-          icon="minus-circle"
+          size="small"
+          icon="minus"
           disabled={score == min}
           onPress={() => {
             if (score > min) {
@@ -33,8 +34,9 @@ export const Score: React.FunctionComponent<ScoreProps> = ({
       <Text h1>{score}</Text>
       <ScoreButtonContainer>
         <Button
+          size="small"
           disabled={score == max}
-          icon="plus-circle"
+          icon="plus"
           onPress={() => {
             if (score < max) {
               setScore(score + 1);
