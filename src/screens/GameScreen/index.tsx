@@ -18,11 +18,11 @@ interface GameScreenProps {
 export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
   navigation,
 }) => {
-  const [raceTo, setRaceTo] = useState(0);
+  const [raceTo, setRaceTo] = useState(3);
   return (
     <GameScreenContainer>
       <Race
-        defaultRaceTo={0}
+        defaultRaceTo={raceTo}
         onRaceToChange={newValue => setRaceTo(newValue)}
       />
       <PlayerSectionContainer>
@@ -31,10 +31,10 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
         <Player index={2} min={0} max={raceTo} />
       </PlayerSectionContainer>
       <Timer defaultDuration={10} />
-      <Button
+      {/* <Button
         text="Click to go to Home Screen"
         onPress={() => navigation.navigate(Routes.HOME)}
-      />
+      /> */}
     </GameScreenContainer>
   );
 };

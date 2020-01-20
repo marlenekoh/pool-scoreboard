@@ -4,5 +4,5 @@ export const PlayerContainer = styled.View`
   align-items: center;
   align-self: stretch;
   flex: 0.5;
-  margin: 30px 0;
+  margin: 20px 0;
 `;

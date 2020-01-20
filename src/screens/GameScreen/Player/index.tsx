@@ -6,6 +6,7 @@ import { Text } from "@components/Text";
 import { Score } from "./Score";
 import { PlayerContainer } from "./PlayerContainer";
 import { NameInputContainer } from "./NameInputContainer";
+import { Foul } from "./Foul";
 
 interface PlayerProps extends React.ComponentProps<typeof Score> {
   index: number;
@@ -18,7 +19,7 @@ export const Player: React.FunctionComponent<PlayerProps> = ({
   return (
     <PlayerContainer>
       <NameInputContainer>
-        <Text bold uppercase h4>
+        <Text h4 bold uppercase>
           {`Player ${index}`}
         </Text>
         <Input
@@ -28,6 +29,7 @@ export const Player: React.FunctionComponent<PlayerProps> = ({
         />
       </NameInputContainer>
       <Score {...otherProps} />
+      <Foul />
     </PlayerContainer>
   );
 };

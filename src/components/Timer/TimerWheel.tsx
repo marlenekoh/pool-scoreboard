@@ -19,7 +19,7 @@ interface TimerWheelProps {
   refreshTimer: () => void;
 }
 
-const TIMER_WHEEL_SIZE = 200;
+const TIMER_WHEEL_SIZE = 180;
 
 export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
   isPlaying,
