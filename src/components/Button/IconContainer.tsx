@@ -1,5 +1,9 @@
 import styled from "styled-components/native";
 
-export const IconContainer = styled.View`
-  padding-right: 8px;
+interface IconContainerProps {
+  isIconButton?: boolean;
+}
+
+export const IconContainer = styled.View<IconContainerProps>`
+  ${({ isIconButton }) => !isIconButton && `padding-right: 8px;`}
 `;

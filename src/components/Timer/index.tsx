@@ -10,11 +10,12 @@ interface TimerProps {
 }
 
 export const Timer: React.FunctionComponent<TimerProps> = ({ duration }) => {
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [key, setKey] = useState("0");
 
   const refreshTimer = () => {
     setKey(new Date().getTime().toString());
+    setIsPlaying(true);
   };
 
   return (
@@ -25,6 +26,7 @@ export const Timer: React.FunctionComponent<TimerProps> = ({ duration }) => {
         duration={duration}
         onFinish={refreshTimer}
       />
+      <Button text="Start" onPress={() => setIsPlaying(true)} />
       <Button text="Reset" onPress={refreshTimer} />
       <Button text="Pause" onPress={() => setIsPlaying(false)} />
       <Button text="Resume" onPress={() => setIsPlaying(true)} />
