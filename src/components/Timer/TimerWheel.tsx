@@ -17,7 +17,6 @@ interface TimerWheelProps {
   editable?: boolean;
   onDurationChange: (newDuration: number) => void;
   refreshTimer: () => void;
-  onFinish?: () => void;
 }
 
 const TIMER_WHEEL_SIZE = 200;
@@ -28,7 +27,6 @@ export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
   defaultDuration: duration,
   onDurationChange,
   refreshTimer,
-  onFinish,
 }) => {
   const durationMilliseconds = duration * 1000;
   const elapsedTime = useElapsedTime(isPlaying, {
@@ -38,8 +36,8 @@ export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
   const remainingTimeCeil = Math.ceil(remainingTime);
   const progress = 100 - (remainingTime / duration) * 100;
 
-  if (onFinish && remainingTimeCeil === 0) {
-    onFinish();
+  if (remainingTimeCeil === 0) {
+    refreshTimer();
   }
 
   return (
@@ -61,7 +59,7 @@ export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
           maxLength={3}
           onEndEditing={({ nativeEvent }) => {
             const duration = parseInt(nativeEvent.text);
-            onDurationChange(isNaN(duration) ? 0 : duration);
+            onDurationChange(isNaN(duration) || duration == 0 ? 10 : duration);
             refreshTimer();
           }}
         >
