@@ -9,10 +9,13 @@ import { TimerButtonGroupContainer } from "./TimerButtonGroupContainer";
 
 interface TimerProps {
   // Duration in seconds
-  duration: number;
+  defaultDuration: number;
 }
 
-export const Timer: React.FunctionComponent<TimerProps> = ({ duration }) => {
+export const Timer: React.FunctionComponent<TimerProps> = ({
+  defaultDuration,
+}) => {
+  const [duration, setDuration] = useState(defaultDuration);
   const [hasStarted, setHasStarted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [key, setKey] = useState("0");
@@ -31,8 +34,10 @@ export const Timer: React.FunctionComponent<TimerProps> = ({ duration }) => {
       <TimerWheel
         key={key}
         isPlaying={isPlaying}
-        duration={duration}
-        onFinish={refreshTimer}
+        editable={!isPlaying}
+        defaultDuration={duration}
+        refreshTimer={refreshTimer}
+        onDurationChange={newDuration => setDuration(newDuration)}
       />
       <TimerButtonGroupContainer>
         {showStart && (

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useElapsedTime } from "use-elapsed-time";
 // @ts-ignore
 import AnimatedProgressWheel from "react-native-progress-wheel";
 
 import { Text } from "@components/Text";
 import { Colors } from "@common/Colors";
+import { Input } from "@components/Input";
 
 import { TimerWheelContainer } from "./TimerWheelContainer";
 import { TimerTextContainer } from "./TimerTextContainer";
@@ -12,15 +13,21 @@ import { TimerTextContainer } from "./TimerTextContainer";
 interface TimerWheelProps {
   isPlaying: boolean;
   // Duration in seconds
-  duration: number;
-  onFinish: () => void;
+  defaultDuration: number;
+  editable?: boolean;
+  onDurationChange: (newDuration: number) => void;
+  refreshTimer: () => void;
+  onFinish?: () => void;
 }
 
 const TIMER_WHEEL_SIZE = 200;
 
 export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
   isPlaying,
-  duration,
+  editable,
+  defaultDuration: duration,
+  onDurationChange,
+  refreshTimer,
   onFinish,
 }) => {
   const durationMilliseconds = duration * 1000;
@@ -31,7 +38,7 @@ export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
   const remainingTimeCeil = Math.ceil(remainingTime);
   const progress = 100 - (remainingTime / duration) * 100;
 
-  if (remainingTimeCeil === 0) {
+  if (onFinish && remainingTimeCeil === 0) {
     onFinish();
   }
 
@@ -45,7 +52,21 @@ export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
         progress={progress}
       />
       <TimerTextContainer>
-        <Text h1>{remainingTimeCeil}</Text>
+        <Input
+          editable={editable}
+          h1
+          showSubmitButtonOnFocus
+          keyboardType="number-pad"
+          textAlign="center"
+          maxLength={3}
+          onEndEditing={({ nativeEvent }) => {
+            const duration = parseInt(nativeEvent.text);
+            onDurationChange(isNaN(duration) ? 0 : duration);
+            refreshTimer();
+          }}
+        >
+          {remainingTimeCeil}
+        </Input>
       </TimerTextContainer>
     </TimerWheelContainer>
   );
