@@ -7,6 +7,7 @@ interface ButtonContainerProps {
   isIconButton?: boolean;
   intent?: Intent;
   disabled?: boolean;
+  minimal?: boolean;
 }
 
 export const ButtonContainer = styled.TouchableHighlight<ButtonContainerProps>`
@@ -18,7 +19,12 @@ export const ButtonContainer = styled.TouchableHighlight<ButtonContainerProps>`
 
   border-radius: 30;
   padding: 8px ${({ isIconButton }) => !isIconButton && ` 24px`};
-  background-color: ${({ intent }) => (intent ? Colors[intent] : Colors.white)};
-
-  ${({ disabled }) => disabled && `background-color: ${Colors.gray2}`}
+  background-color: ${({ minimal, disabled, intent }) => {
+    if (minimal || disabled) {
+      return Colors.transparent;
+    } else if (intent) {
+      return Colors[intent];
+    }
+    return Colors.white;
+  }};
 `;

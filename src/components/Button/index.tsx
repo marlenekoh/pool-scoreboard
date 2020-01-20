@@ -9,11 +9,20 @@ import { ButtonContainer } from "./ButtonContainer";
 import { IconContainer } from "./IconContainer";
 
 interface ButtonProps
-  extends Omit<React.ComponentProps<typeof ReactNativeButton>, "title"> {
+  extends Pick<
+    React.ComponentProps<typeof ReactNativeButton>,
+    "disabled" | "onPress"
+  > {
   // Icon name should be from Feather Icons
   icon?: string;
+  // Color of icon
+  iconColor?: string;
+  // Size of button
   size?: "small" | "medium" | "large";
+  // Text rendered in button
   text?: string;
+  // If `true`, does not render button background
+  minimal?: boolean;
 }
 
 export const Button: React.FunctionComponent<ButtonProps> = ({
@@ -21,6 +30,8 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
   icon,
   size,
   disabled,
+  iconColor = Colors.black,
+  minimal,
   ...buttonProps
 }) => {
   const getIconSize = () => {
@@ -40,10 +51,11 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
   return (
     <ButtonContainer
       {...buttonProps}
+      minimal={minimal}
       disabled={disabled}
       isIconButton={isIconButton}
       activeOpacity={0.8}
-      underlayColor={Colors.overlay}
+      underlayColor={minimal ? Colors.transparent : Colors.overlay}
     >
       <>
         {icon && (
@@ -51,7 +63,7 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
             <Icon
               name={icon}
               size={getIconSize()}
-              color={disabled ? Colors.gray1 : Colors.black}
+              color={disabled ? Colors.gray1 : iconColor}
             />
           </IconContainer>
         )}
