@@ -8,10 +8,12 @@ import { TimerButton } from "./TimerButton";
 interface TimerProps {
   // Duration in seconds
   defaultDuration: number;
+  onTimerReset?: () => void;
 }
 
 export const Timer: React.FunctionComponent<TimerProps> = ({
   defaultDuration,
+  onTimerReset,
 }) => {
   const [duration, setDuration] = useState(defaultDuration);
   const [hasStarted, setHasStarted] = useState(false);
@@ -22,6 +24,7 @@ export const Timer: React.FunctionComponent<TimerProps> = ({
     setKey(new Date().getTime().toString());
     setHasStarted(false);
     setIsPlaying(false);
+    onTimerReset();
   };
 
   const showStart = !hasStarted;
@@ -48,7 +51,7 @@ export const Timer: React.FunctionComponent<TimerProps> = ({
         )}
         {showPause && (
           <>
-            <TimerButton icon="square" onPress={refreshTimer} />
+            <TimerButton icon="skip-forward" onPress={refreshTimer} />
             <TimerButton icon="pause" onPress={() => setIsPlaying(false)} />
           </>
         )}

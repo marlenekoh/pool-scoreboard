@@ -18,6 +18,7 @@ const transitionConfig: TransitionSpec = {
 const MainNavigator = createStackNavigator(
   {
     [Routes.GAME]: { screen: GameScreen },
+    [Routes.HOME]: { screen: HomeScreen },
   },
   {
     headerMode: "none",

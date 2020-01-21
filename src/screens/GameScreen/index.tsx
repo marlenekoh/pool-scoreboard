@@ -21,6 +21,11 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
   const [raceTo, setRaceTo] = useState(3);
   const [currentPlayer, setCurrentPlayer] = useState(1);
 
+  const nextPlayer = () => {
+    // Assume total 2 players only
+    setCurrentPlayer(currentPlayer == 1 ? 2 : 1);
+  };
+
   return (
     <GameScreenContainer>
       <Race
@@ -32,7 +37,7 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
         <Divider vertical />
         <Player isCurrent={currentPlayer == 2} index={2} min={0} max={raceTo} />
       </PlayerSectionContainer>
-      <Timer defaultDuration={10} />
+      <Timer defaultDuration={10} onTimerReset={() => nextPlayer()} />
       {/* <Button
         text="Click to go to Home Screen"
         onPress={() => navigation.navigate(Routes.HOME)}

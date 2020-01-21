@@ -5,6 +5,7 @@ import { Button } from "@components/Button";
 
 import { FoulGroupContainer } from "./FoulGroupContainer";
 import { FoulContainer } from "./FoulContainer";
+import { FoulButtonContainer } from "./FoulButtonContainer";
 
 export const Foul: React.FunctionComponent = () => {
   const [fouls, setFouls] = useState(0);
@@ -26,9 +27,15 @@ export const Foul: React.FunctionComponent = () => {
         <Button minimal icon={"refresh-cw"} onPress={() => setFouls(0)} />
       </FoulGroupContainer>
       <FoulGroupContainer>
-        <Button icon={getFoulIcon(1)} onPress={() => handleOnFoulPress(1)} />
-        <Button icon={getFoulIcon(2)} onPress={() => handleOnFoulPress(2)} />
-        <Button icon={getFoulIcon(3)} onPress={() => handleOnFoulPress(3)} />
+        <FoulButtonContainer>
+          <Button icon={getFoulIcon(1)} onPress={() => handleOnFoulPress(1)} />
+        </FoulButtonContainer>
+        <FoulButtonContainer>
+          <Button icon={getFoulIcon(2)} onPress={() => handleOnFoulPress(2)} />
+        </FoulButtonContainer>
+        <FoulButtonContainer>
+          <Button icon={getFoulIcon(3)} onPress={() => handleOnFoulPress(3)} />
+        </FoulButtonContainer>
       </FoulGroupContainer>
     </FoulContainer>
   );

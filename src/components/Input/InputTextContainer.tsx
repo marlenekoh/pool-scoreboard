@@ -7,8 +7,8 @@ interface InputTextContainerProps {
 
 export const InputTextContainer = styled.View<InputTextContainerProps>`
   flex: 1;
-  margin-bottom: 8px;
   flex-wrap: nowrap;
+  margin-bottom: 8px;
 
   border-bottom-width: 1px;
   border-bottom-color: ${({ focused }) =>
