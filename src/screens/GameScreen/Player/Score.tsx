@@ -22,6 +22,7 @@ export const Score: React.FunctionComponent<ScoreProps> = ({
     if (min < 0) {
       min = 0;
     }
+
     if (score > max || score < min) {
       setScore(min);
     }

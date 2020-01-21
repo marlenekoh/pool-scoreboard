@@ -37,7 +37,14 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
         <Divider vertical />
         <Player isCurrent={currentPlayer == 2} index={2} min={0} max={raceTo} />
       </PlayerSectionContainer>
-      <Timer defaultDuration={10} onTimerReset={() => nextPlayer()} />
+      <Timer
+        defaultDuration={10}
+        onTimerReset={hasPlayerChanged => {
+          if (hasPlayerChanged) {
+            nextPlayer();
+          }
+        }}
+      />
       {/* <Button
         text="Click to go to Home Screen"
         onPress={() => navigation.navigate(Routes.HOME)}
