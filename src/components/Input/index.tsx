@@ -20,6 +20,7 @@ interface InputProps
   textAlign?: "left" | "center" | "right";
   bold?: boolean;
   size?: "small" | "medium" | "large";
+  color?: string;
 }
 
 export const Input: React.FunctionComponent<InputProps> = ({
@@ -27,6 +28,7 @@ export const Input: React.FunctionComponent<InputProps> = ({
   textAlign = "left",
   bold,
   size,
+  color = Colors.black,
   ...otherProps
 }) => {
   const [focused, setFocused] = useState(false);
@@ -46,13 +48,14 @@ export const Input: React.FunctionComponent<InputProps> = ({
 
   return (
     <InputContainer>
-      <InputTextContainer focused={focused}>
+      <InputTextContainer color={color} focused={focused}>
         <TextInput
           ref={inputRef}
           style={{
             fontSize,
             textAlign,
             fontWeight: bold ? "bold" : "normal",
+            color: color,
           }}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
@@ -64,7 +67,7 @@ export const Input: React.FunctionComponent<InputProps> = ({
           minimal
           size={size ? size : getButtonSizeFromFontSize(fontSize)}
           icon="check"
-          iconColor={Colors.black}
+          iconColor={color}
           onPress={() => setFocused(false)}
         />
       )}

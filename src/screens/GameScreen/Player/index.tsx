@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 import { Input } from "@components/Input";
+import { Colors } from "@common/Colors";
 
 import { Score } from "./Score";
+import { Foul } from "./Foul";
 import { PlayerContainer } from "./PlayerContainer";
 import { NameInputContainer } from "./NameInputContainer";
-import { Foul } from "./Foul";
 import { CurrentPlayerIcon } from "./CurrentPlayerIcon";
 
 interface PlayerProps extends React.ComponentProps<typeof Score> {
@@ -19,13 +20,26 @@ export const Player: React.FunctionComponent<PlayerProps> = ({
   ...otherProps
 }) => {
   const [name, setName] = useState(`Player ${index}`);
+  const shadowStyle = isCurrent
+    ? {
+        shadowColor: Colors.black,
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+
+        elevation: 4,
+      }
+    : {};
 
   return (
-    <PlayerContainer>
+    <PlayerContainer style={shadowStyle} isCurrentPlayer={isCurrent}>
       <NameInputContainer>
-        {isCurrent && <CurrentPlayerIcon />}
         <Input
           bold
+          selectTextOnFocus
           showSubmitButtonOnFocus
           size="medium"
           autoCorrect={false}

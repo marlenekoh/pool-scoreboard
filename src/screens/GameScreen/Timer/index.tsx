@@ -16,19 +16,17 @@ export const Timer: React.FunctionComponent<TimerProps> = ({
   onTimerReset,
 }) => {
   const [duration, setDuration] = useState(defaultDuration);
-  const [hasStarted, setHasStarted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [key, setKey] = useState("0");
 
   const refreshTimer = (hasPlayerChanged: boolean) => {
     setKey(new Date().getTime().toString());
-    setHasStarted(false);
     setIsPlaying(false);
     onTimerReset(hasPlayerChanged);
   };
 
-  const showStart = !hasStarted;
-  const showPause = hasStarted && isPlaying;
+  const showStart = !isPlaying;
+  const showPause = isPlaying;
 
   return (
     <TimerContainer>
@@ -41,17 +39,30 @@ export const Timer: React.FunctionComponent<TimerProps> = ({
         onDurationChange={newDuration => setDuration(newDuration)}
       />
       <TimerButtonGroupContainer>
-        {showStart && (
+        {!isPlaying && (
           <TimerButton
             icon="play"
             onPress={() => {
-              setHasStarted(true), setIsPlaying(true);
+              setIsPlaying(true);
             }}
           />
         )}
         {showPause && (
           <>
-            <TimerButton icon="skip-forward" onPress={refreshTimer} />
+            <TimerButton
+              icon="skip-forward"
+              onPress={() => {
+                refreshTimer(true);
+                setIsPlaying(true);
+              }}
+            />
+            <TimerButton
+              icon="square"
+              onPress={() => {
+                refreshTimer(false);
+                setIsPlaying(false);
+              }}
+            />
             <TimerButton icon="pause" onPress={() => setIsPlaying(false)} />
           </>
         )}

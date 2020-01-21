@@ -3,7 +3,6 @@ import { NavigationScreenProp } from "react-navigation";
 
 import { Button } from "@components/Button";
 import { Routes } from "@common/Routes";
-import { Divider } from "@components/Divider";
 
 import { GameScreenContainer } from "./GameScreenContainer";
 import { Player } from "./Player";
@@ -34,7 +33,6 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
       />
       <PlayerSectionContainer>
         <Player isCurrent={currentPlayer == 1} index={1} min={0} max={raceTo} />
-        <Divider vertical />
         <Player isCurrent={currentPlayer == 2} index={2} min={0} max={raceTo} />
       </PlayerSectionContainer>
       <Timer

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Text } from "@components/Text";
-
+import { Colors } from "@common/Colors";
 import { Input } from "@components/Input";
 
 import { RaceContainer } from "./RaceContainer";
@@ -19,11 +19,12 @@ export const Race: React.FunctionComponent<RaceProps> = ({
 
   return (
     <RaceContainer>
-      <Text h5 bold uppercase>
+      <Text h5 bold uppercase color={Colors.white}>
         Race
       </Text>
       <Input
         h2
+        color={Colors.white}
         selectTextOnFocus
         showSubmitButtonOnFocus
         keyboardType="number-pad"

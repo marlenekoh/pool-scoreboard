@@ -1,8 +1,10 @@
 import styled from "styled-components/native";
+
 import { Colors } from "@common/Colors";
 
 interface InputTextContainerProps {
   focused?: boolean;
+  color: string;
 }
 
 export const InputTextContainer = styled.View<InputTextContainerProps>`
@@ -11,6 +13,6 @@ export const InputTextContainer = styled.View<InputTextContainerProps>`
   margin-bottom: 8px;
 
   border-bottom-width: 1px;
-  border-bottom-color: ${({ focused }) =>
-    focused ? Colors.black : Colors.transparent};
+  border-bottom-color: ${({ focused, color }) =>
+    focused ? color : Colors.transparent};
 `;

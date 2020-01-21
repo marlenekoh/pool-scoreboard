@@ -1,8 +1,17 @@
 import styled from "styled-components/native";
 
-export const PlayerContainer = styled.View`
+import { Colors } from "@common/Colors";
+
+interface PlayerContainerProps {
+  isCurrentPlayer?: boolean;
+}
+
+export const PlayerContainer = styled.View<PlayerContainerProps>`
   align-items: center;
-  align-self: stretch;
+  align-self: center;
   flex: 0.5;
-  margin: 30px 0;
+  margin: 20px 8px;
+  padding: 10px 0;
+  ${({ isCurrentPlayer }) =>
+    isCurrentPlayer && `background-color: ${Colors.white};`}
 `;

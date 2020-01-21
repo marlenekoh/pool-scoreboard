@@ -10,7 +10,7 @@ export const CurrentPlayerIcon: React.FunctionComponent = () => {
   return (
     <CurrentPlayerIconContainer>
       <Text>
-        <Icon name="triangle" size={getFontSizeFromButtonSize("small")} />
+        <Icon name="play" size={getFontSizeFromButtonSize("small")} />
       </Text>
     </CurrentPlayerIconContainer>
   );
