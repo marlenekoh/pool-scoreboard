@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import _ from "lodash";
 
 import { Text } from "@components/Text";
 import { Button } from "@components/Button";
 
 import { FoulGroupContainer } from "./FoulGroupContainer";
 import { FoulContainer } from "./FoulContainer";
-import { FoulButtonContainer } from "./FoulButtonContainer";
+import { FoulButtonGroupContainer } from "./FoulButtonGroupContainer";
 
 export const Foul: React.FunctionComponent = () => {
   const [fouls, setFouls] = useState(0);
@@ -26,17 +27,16 @@ export const Foul: React.FunctionComponent = () => {
         </Text>
         <Button minimal icon={"refresh-cw"} onPress={() => setFouls(0)} />
       </FoulGroupContainer>
-      <FoulGroupContainer>
-        <FoulButtonContainer>
-          <Button icon={getFoulIcon(1)} onPress={() => handleOnFoulPress(1)} />
-        </FoulButtonContainer>
-        <FoulButtonContainer>
-          <Button icon={getFoulIcon(2)} onPress={() => handleOnFoulPress(2)} />
-        </FoulButtonContainer>
-        <FoulButtonContainer>
-          <Button icon={getFoulIcon(3)} onPress={() => handleOnFoulPress(3)} />
-        </FoulButtonContainer>
-      </FoulGroupContainer>
+      <FoulButtonGroupContainer>
+        {_.map([1, 2, 3], index => (
+          <Button
+            minimal
+            key={index}
+            icon={getFoulIcon(index)}
+            onPress={() => handleOnFoulPress(index)}
+          />
+        ))}
+      </FoulButtonGroupContainer>
     </FoulContainer>
   );
 };
