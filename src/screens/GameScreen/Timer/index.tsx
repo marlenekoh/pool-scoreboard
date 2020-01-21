@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import { Button } from "@components/Button";
-
 import { TimerWheel } from "./TimerWheel";
 import { TimerContainer } from "./TimerContainer";
 import { TimerButtonGroupContainer } from "./TimerButtonGroupContainer";
