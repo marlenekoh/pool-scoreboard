@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Button } from "@components/Button";
 
 import { TimerWheel } from "./TimerWheel";
-import { TimerButtonContainer } from "./TimerButtonContainer";
 import { TimerContainer } from "./TimerContainer";
 import { TimerButtonGroupContainer } from "./TimerButtonGroupContainer";
+import { TimerButton } from "./TimerButton";
 
 interface TimerProps {
   // Duration in seconds
@@ -41,29 +41,21 @@ export const Timer: React.FunctionComponent<TimerProps> = ({
       />
       <TimerButtonGroupContainer>
         {showStart && (
-          <TimerButtonContainer>
-            <Button
-              text="Start"
-              onPress={() => {
-                setHasStarted(true), setIsPlaying(true);
-              }}
-            />
-          </TimerButtonContainer>
+          <TimerButton
+            icon="play"
+            onPress={() => {
+              setHasStarted(true), setIsPlaying(true);
+            }}
+          />
         )}
         {showPause && (
-          <TimerButtonContainer>
-            <Button text="Pause" onPress={() => setIsPlaying(false)} />
-          </TimerButtonContainer>
+          <>
+            <TimerButton icon="square" onPress={refreshTimer} />
+            <TimerButton icon="pause" onPress={() => setIsPlaying(false)} />
+          </>
         )}
         {!showStart && !showPause && (
-          <>
-            <TimerButtonContainer>
-              <Button text="Resume" onPress={() => setIsPlaying(true)} />
-            </TimerButtonContainer>
-            <TimerButtonContainer>
-              <Button text="Reset" onPress={refreshTimer} />
-            </TimerButtonContainer>
-          </>
+          <TimerButton icon="play" onPress={() => setIsPlaying(true)} />
         )}
       </TimerButtonGroupContainer>
     </TimerContainer>

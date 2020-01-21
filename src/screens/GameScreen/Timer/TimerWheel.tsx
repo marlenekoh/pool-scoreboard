@@ -51,8 +51,8 @@ export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
       />
       <TimerTextContainer>
         <Input
-          editable={editable}
           h1
+          editable={editable}
           showSubmitButtonOnFocus
           keyboardType="number-pad"
           textAlign="center"

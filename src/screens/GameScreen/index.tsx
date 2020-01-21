@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { NavigationScreenProp } from "react-navigation";
 
-import { Timer } from "@components/Timer";
 import { Button } from "@components/Button";
 import { Routes } from "@common/Routes";
 import { Divider } from "@components/Divider";
@@ -10,6 +9,7 @@ import { GameScreenContainer } from "./GameScreenContainer";
 import { Player } from "./Player";
 import { PlayerSectionContainer } from "./PlayerSectionContainer";
 import { Race } from "./Race";
+import { Timer } from "./Timer";
 
 interface GameScreenProps {
   navigation: NavigationScreenProp<any>;

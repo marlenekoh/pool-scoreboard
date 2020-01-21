@@ -11,13 +11,11 @@ interface ButtonContainerProps {
 }
 
 export const ButtonContainer = styled.TouchableHighlight<ButtonContainerProps>`
-  align-self: flex-start;
-  flex-wrap: wrap;
-  align-items: flex-start;
   flex-direction: row;
-  justify-content: center;
+  align-self: center;
+  align-items: center;
 
-  border-radius: 30;
+  border-radius: 100;
   padding: 8px ${({ isIconButton }) => !isIconButton && ` 24px`};
   background-color: ${({ minimal, disabled, intent }) => {
     if (minimal || disabled) {

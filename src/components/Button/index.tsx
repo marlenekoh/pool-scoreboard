@@ -2,6 +2,8 @@ import React from "react";
 import { Button as ReactNativeButton } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 
+import { getFontSizeFromButtonSize } from "@common/getFontSizeFromButtonSize";
+import { getFontStyleFromButtonSize } from "@common/getFontStyleFromButtonSize";
 import { Text } from "@components/Text";
 import { Colors } from "@common/Colors";
 
@@ -23,34 +25,25 @@ interface ButtonProps
   text?: string;
   // If `true`, does not render button background
   minimal?: boolean;
+  bold?: boolean;
+  uppercase?: boolean;
 }
 
 export const Button: React.FunctionComponent<ButtonProps> = ({
   text,
   icon,
-  size,
+  size = "medium",
   disabled,
   iconColor = Colors.black,
   minimal,
-  ...buttonProps
+  onPress,
+  ...textProps
 }) => {
-  const getIconSize = () => {
-    if (!size) return 24;
-    switch (size) {
-      case "small":
-        return 16;
-      case "medium":
-        return 24;
-      case "large":
-        return 32;
-    }
-  };
-
   const isIconButton = icon && !text;
 
   return (
     <ButtonContainer
-      {...buttonProps}
+      onPress={onPress}
       minimal={minimal}
       disabled={disabled}
       isIconButton={isIconButton}
@@ -62,13 +55,17 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
           <IconContainer isIconButton={isIconButton}>
             <Icon
               name={icon}
-              size={getIconSize()}
+              size={getFontSizeFromButtonSize(size)}
               color={disabled ? Colors.gray1 : iconColor}
             />
           </IconContainer>
         )}
         {/** TODO: Update text size acc to button size */}
-        {text && <Text>{text}</Text>}
+        {text && (
+          <Text {...textProps} {...getFontStyleFromButtonSize(size)}>
+            {text}
+          </Text>
+        )}
       </>
     </ButtonContainer>
   );
