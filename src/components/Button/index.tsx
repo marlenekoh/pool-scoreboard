@@ -6,6 +6,7 @@ import { getFontSizeFromButtonSize } from "@common/getFontSizeFromButtonSize";
 import { getFontStyleFromButtonSize } from "@common/getFontStyleFromButtonSize";
 import { Text } from "@components/Text";
 import { Colors } from "@common/Colors";
+import { Intent } from "@common/Intent";
 
 import { ButtonContainer } from "./ButtonContainer";
 import { IconContainer } from "./IconContainer";
@@ -27,6 +28,8 @@ interface ButtonProps
   minimal?: boolean;
   bold?: boolean;
   uppercase?: boolean;
+  isMenuButton?: boolean;
+  intent?: Intent;
 }
 
 export const Button: React.FunctionComponent<ButtonProps> = ({
@@ -35,7 +38,9 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
   size = "medium",
   disabled,
   iconColor,
+  intent,
   minimal,
+  isMenuButton,
   onPress,
   ...textProps
 }) => {
@@ -47,9 +52,11 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
 
   return (
     <ButtonContainer
+      intent={intent}
       onPress={onPress}
       minimal={minimal}
       disabled={disabled}
+      isMenuButton={isMenuButton}
       isIconButton={isIconButton}
       activeOpacity={0.8}
       underlayColor={minimal ? Colors.transparent : Colors.overlay}
@@ -68,7 +75,7 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
         {text && (
           <Text
             {...textProps}
-            color={Colors.gray1}
+            color={Colors.black}
             {...getFontStyleFromButtonSize(size)}
           >
             {text}

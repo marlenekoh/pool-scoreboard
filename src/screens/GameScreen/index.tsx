@@ -9,6 +9,7 @@ import { Player } from "./Player";
 import { PlayerSectionContainer } from "./PlayerSectionContainer";
 import { Race } from "./Race";
 import { Timer } from "./Timer";
+import { Settings } from "./Settings";
 
 interface GameScreenProps {
   navigation: NavigationScreenProp<any>;
@@ -27,6 +28,7 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
 
   return (
     <GameScreenContainer>
+      <Settings />
       <Race
         defaultRaceTo={raceTo}
         onRaceToChange={newValue => setRaceTo(newValue)}

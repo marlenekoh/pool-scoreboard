@@ -12,6 +12,7 @@ export const PlayerContainer = styled.View<PlayerContainerProps>`
   flex: 0.5;
   margin: 20px 8px;
   padding: 10px 0;
+  border-radius: 15;
   ${({ isCurrentPlayer }) =>
     isCurrentPlayer && `background-color: ${Colors.white};`}
 `;

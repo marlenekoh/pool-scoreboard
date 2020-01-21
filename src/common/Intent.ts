@@ -1,1 +1,7 @@
-export type Intent = "primary" | "secondary" | "success" | "danger" | "warning";
+export type Intent =
+  | "primary"
+  | "secondary"
+  | "success"
+  | "danger"
+  | "warning"
+  | "none";
