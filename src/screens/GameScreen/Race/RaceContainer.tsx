@@ -5,7 +5,7 @@ export const RaceContainer = styled.View`
   border: 1px ${Colors.black};
   border-top-width: 0;
 
-  padding: 20px 8px;
+  padding: 20px 8px 10px 8px;
   width: 150px;
   height: 100px;
 

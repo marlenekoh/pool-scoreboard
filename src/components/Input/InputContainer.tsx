@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 
 export const InputContainer = styled.View`
+  flex: 1;
   flex-direction: row;
-  align-items: stretch;
-  align-self: stretch;
+  align-items: center;
 `;

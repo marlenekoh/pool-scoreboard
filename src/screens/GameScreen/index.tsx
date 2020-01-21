@@ -19,6 +19,8 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
   navigation,
 }) => {
   const [raceTo, setRaceTo] = useState(3);
+  const [currentPlayer, setCurrentPlayer] = useState(1);
+
   return (
     <GameScreenContainer>
       <Race
@@ -26,9 +28,9 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
         onRaceToChange={newValue => setRaceTo(newValue)}
       />
       <PlayerSectionContainer>
-        <Player index={1} min={0} max={raceTo} />
+        <Player isCurrent={currentPlayer == 1} index={1} min={0} max={raceTo} />
         <Divider vertical />
-        <Player index={2} min={0} max={raceTo} />
+        <Player isCurrent={currentPlayer == 2} index={2} min={0} max={raceTo} />
       </PlayerSectionContainer>
       <Timer defaultDuration={10} />
       {/* <Button

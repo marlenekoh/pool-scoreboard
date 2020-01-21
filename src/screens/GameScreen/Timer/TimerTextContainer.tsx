@@ -6,7 +6,8 @@ export const TimerTextContainer = styled.View`
   left: 0;
   right: 0;
   bottom: 0;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  align-self: center;
   transform: rotate(90deg);
 `;
