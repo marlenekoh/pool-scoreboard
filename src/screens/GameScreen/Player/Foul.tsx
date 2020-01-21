@@ -3,6 +3,7 @@ import _ from "lodash";
 
 import { Text } from "@components/Text";
 import { Button } from "@components/Button";
+import { Colors } from "@common/Colors";
 
 import { FoulGroupContainer } from "./FoulGroupContainer";
 import { FoulContainer } from "./FoulContainer";
@@ -11,8 +12,8 @@ import { FoulButtonGroupContainer } from "./FoulButtonGroupContainer";
 export const Foul: React.FunctionComponent = () => {
   const [fouls, setFouls] = useState(0);
 
-  const getFoulIcon = (foulIndex: number) => {
-    return fouls > foulIndex - 1 ? "x-circle" : "circle";
+  const isFoul = (foulIndex: number) => {
+    return fouls > foulIndex - 1;
   };
 
   const handleOnFoulPress = (foulIndex: number) => {
@@ -32,7 +33,8 @@ export const Foul: React.FunctionComponent = () => {
           <Button
             minimal
             key={index}
-            icon={getFoulIcon(index)}
+            icon={isFoul(index) ? "x-circle" : "circle"}
+            iconColor={isFoul(index) ? Colors.danger : Colors.black}
             onPress={() => handleOnFoulPress(index)}
           />
         ))}

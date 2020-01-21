@@ -45,8 +45,8 @@ export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
       <AnimatedProgressWheel
         size={TIMER_WHEEL_SIZE}
         width={10}
-        color={Colors.white}
-        backgroundColor={Colors.gray1}
+        color={Colors.secondary}
+        backgroundColor={Colors.primary}
         progress={progress}
       />
       <TimerTextContainer>

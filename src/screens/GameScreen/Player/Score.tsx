@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Text } from "@components/Text";
 import { Button } from "@components/Button";
 
 import { ScoreContainer } from "./ScoreContainer";
 import { ScoreButtonContainer } from "./ScoreButtonContainer";
+import { Colors } from "@common/Colors";
 
 interface ScoreProps {
   min?: number;
@@ -17,12 +18,22 @@ export const Score: React.FunctionComponent<ScoreProps> = ({
 }) => {
   const [score, setScore] = useState(min);
 
+  useEffect(() => {
+    if (min < 0) {
+      min = 0;
+    }
+    if (score > max || score < min) {
+      setScore(min);
+    }
+  });
+
   return (
     <ScoreContainer>
       <ScoreButtonContainer>
         <Button
-          size="small"
-          icon="minus"
+          minimal
+          icon="minus-circle"
+          iconColor={Colors.primary}
           disabled={score == min}
           onPress={() => {
             if (score > min) {
@@ -34,9 +45,10 @@ export const Score: React.FunctionComponent<ScoreProps> = ({
       <Text h1>{score}</Text>
       <ScoreButtonContainer>
         <Button
-          size="small"
+          minimal
           disabled={score == max}
-          icon="plus"
+          icon="plus-circle"
+          iconColor={Colors.primary}
           onPress={() => {
             if (score < max) {
               setScore(score + 1);

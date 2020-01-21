@@ -34,12 +34,16 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
   icon,
   size = "medium",
   disabled,
-  iconColor = Colors.black,
+  iconColor,
   minimal,
   onPress,
   ...textProps
 }) => {
   const isIconButton = icon && !text;
+
+  if (!iconColor) {
+    iconColor = minimal ? Colors.black : Colors.white;
+  }
 
   return (
     <ButtonContainer
@@ -56,13 +60,17 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
             <Icon
               name={icon}
               size={getFontSizeFromButtonSize(size)}
-              color={disabled ? Colors.gray1 : iconColor}
+              color={disabled ? Colors.gray2 : iconColor}
             />
           </IconContainer>
         )}
         {/** TODO: Update text size acc to button size */}
         {text && (
-          <Text {...textProps} {...getFontStyleFromButtonSize(size)}>
+          <Text
+            {...textProps}
+            color={Colors.gray1}
+            {...getFontStyleFromButtonSize(size)}
+          >
             {text}
           </Text>
         )}

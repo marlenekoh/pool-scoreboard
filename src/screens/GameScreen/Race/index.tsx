@@ -19,7 +19,9 @@ export const Race: React.FunctionComponent<RaceProps> = ({
 
   return (
     <RaceContainer>
-      <Text h4>Race</Text>
+      <Text h5 bold uppercase>
+        Race
+      </Text>
       <Input
         h2
         selectTextOnFocus
@@ -30,12 +32,13 @@ export const Race: React.FunctionComponent<RaceProps> = ({
         value={text}
         onChangeText={text => {
           setText(text);
-          onRaceToChange(parseInt(text));
         }}
         onEndEditing={() => {
-          if (!text.length) {
+          const textToNumber = parseInt(text.trim());
+          if (!text.length || textToNumber < 0 || isNaN(textToNumber)) {
             setText("0");
           }
+          onRaceToChange(parseInt(text));
         }}
       />
     </RaceContainer>

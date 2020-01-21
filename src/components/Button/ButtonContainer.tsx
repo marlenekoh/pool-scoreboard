@@ -23,6 +23,6 @@ export const ButtonContainer = styled.TouchableHighlight<ButtonContainerProps>`
     } else if (intent) {
       return Colors[intent];
     }
-    return Colors.white;
+    return Colors.primary;
   }};
 `;
