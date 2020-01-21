@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Input } from "@components/Input";
-import { Text } from "@components/Text";
 
 import { Score } from "./Score";
 import { PlayerContainer } from "./PlayerContainer";
@@ -16,16 +15,19 @@ export const Player: React.FunctionComponent<PlayerProps> = ({
   index,
   ...otherProps
 }) => {
+  const [name, setName] = useState(`Player ${index}`);
+
   return (
     <PlayerContainer>
       <NameInputContainer>
-        <Text h4 bold uppercase>
-          {`Player ${index}`}
-        </Text>
         <Input
+          bold
           showSubmitButtonOnFocus
+          size="medium"
           autoCorrect={false}
-          placeholder="Enter Name"
+          placeholder={`Name`}
+          onChangeText={text => setName(text)}
+          value={name}
         />
       </NameInputContainer>
       <Score {...otherProps} />
