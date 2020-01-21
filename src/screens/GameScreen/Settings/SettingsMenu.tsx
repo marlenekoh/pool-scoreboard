@@ -3,7 +3,13 @@ import React from "react";
 import { Menu, MenuItem, MenuHeader } from "@components/Menu";
 import { Colors } from "@common/Colors";
 
-export const SettingsMenu: React.FunctionComponent = () => {
+interface SettingsMenuProps {
+  onGameRestart: () => void;
+}
+
+export const SettingsMenu: React.FunctionComponent<SettingsMenuProps> = ({
+  onGameRestart,
+}) => {
   return (
     <Menu
       top
@@ -21,7 +27,7 @@ export const SettingsMenu: React.FunctionComponent = () => {
       }}
     >
       <MenuHeader>Options</MenuHeader>
-      <MenuItem icon="refresh-cw" text="Restart Game" onPress={() => {}} />
+      <MenuItem icon="refresh-cw" text="Restart Game" onPress={onGameRestart} />
     </Menu>
   );
 };

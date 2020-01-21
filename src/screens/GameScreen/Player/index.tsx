@@ -7,7 +7,6 @@ import { Score } from "./Score";
 import { Foul } from "./Foul";
 import { PlayerContainer } from "./PlayerContainer";
 import { NameInputContainer } from "./NameInputContainer";
-import { CurrentPlayerIcon } from "./CurrentPlayerIcon";
 
 interface PlayerProps extends React.ComponentProps<typeof Score> {
   index: number;
@@ -20,6 +19,7 @@ export const Player: React.FunctionComponent<PlayerProps> = ({
   ...otherProps
 }) => {
   const [name, setName] = useState(`Player ${index}`);
+  const [key, setKey] = useState("0");
   const shadowStyle = isCurrent
     ? {
         shadowColor: Colors.black,
@@ -33,6 +33,10 @@ export const Player: React.FunctionComponent<PlayerProps> = ({
         elevation: 4,
       }
     : {};
+
+  const reset = () => {
+    setKey(new Date().getTime().toString());
+  };
 
   return (
     <PlayerContainer style={shadowStyle} isCurrentPlayer={isCurrent}>

@@ -5,12 +5,16 @@ import { Button } from "@components/Button";
 import { SettingsMenu } from "./SettingsMenu";
 import { SettingsContainer } from "./SettingsContainer";
 
-export const Settings: React.FunctionComponent = () => {
+interface SettingsProps extends React.ComponentProps<typeof SettingsMenu> {}
+
+export const Settings: React.FunctionComponent<SettingsProps> = ({
+  onGameRestart,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <SettingsContainer>
-      {isOpen && <SettingsMenu />}
+      {isOpen && <SettingsMenu onGameRestart={onGameRestart} />}
       <Button icon="settings" onPress={() => setIsOpen(!isOpen)} bold />
     </SettingsContainer>
   );

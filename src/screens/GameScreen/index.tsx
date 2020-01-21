@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavigationScreenProp } from "react-navigation";
+import _ from "lodash";
 
 import { Button } from "@components/Button";
 import { Routes } from "@common/Routes";
@@ -26,16 +27,27 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
     setCurrentPlayer(currentPlayer == 1 ? 2 : 1);
   };
 
+  const restartGame = () => {
+    setCurrentPlayer(1);
+  };
+
   return (
     <GameScreenContainer>
-      <Settings />
+      <Settings onGameRestart={() => {}} />
       <Race
         defaultRaceTo={raceTo}
         onRaceToChange={newValue => setRaceTo(newValue)}
       />
       <PlayerSectionContainer>
-        <Player isCurrent={currentPlayer == 1} index={1} min={0} max={raceTo} />
-        <Player isCurrent={currentPlayer == 2} index={2} min={0} max={raceTo} />
+        {_.map([1, 2], index => (
+          <Player
+            key={index}
+            isCurrent={currentPlayer == index}
+            index={index}
+            min={0}
+            max={raceTo}
+          />
+        ))}
       </PlayerSectionContainer>
       <Timer
         defaultDuration={10}
