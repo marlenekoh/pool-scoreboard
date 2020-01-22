@@ -14,7 +14,14 @@ export const Settings: React.FunctionComponent<SettingsProps> = ({
 
   return (
     <SettingsContainer>
-      {isOpen && <SettingsMenu onGameRestart={onGameRestart} />}
+      {isOpen && (
+        <SettingsMenu
+          onGameRestart={() => {
+            onGameRestart();
+            setIsOpen(false);
+          }}
+        />
+      )}
       <Button icon="settings" onPress={() => setIsOpen(!isOpen)} bold />
     </SettingsContainer>
   );

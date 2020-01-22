@@ -21,19 +21,21 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
 }) => {
   const [raceTo, setRaceTo] = useState(3);
   const [currentPlayer, setCurrentPlayer] = useState(1);
+  const [key, setKey] = useState("0");
 
   const nextPlayer = () => {
     // Assume total 2 players only
     setCurrentPlayer(currentPlayer == 1 ? 2 : 1);
   };
 
-  const restartGame = () => {
-    setCurrentPlayer(1);
-  };
-
   return (
     <GameScreenContainer>
-      <Settings onGameRestart={() => {}} />
+      <Settings
+        onGameRestart={() => {
+          setCurrentPlayer(1);
+          setKey(new Date().getTime().toString());
+        }}
+      />
       <Race
         defaultRaceTo={raceTo}
         onRaceToChange={newValue => setRaceTo(newValue)}
@@ -41,7 +43,7 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
       <PlayerSectionContainer>
         {_.map([1, 2], index => (
           <Player
-            key={index}
+            key={`${index}:${key}`}
             isCurrent={currentPlayer == index}
             index={index}
             min={0}
