@@ -40,22 +40,24 @@ export const Timer: React.FunctionComponent<TimerProps> = ({
       />
       <TimerButtonGroupContainer>
         {!isPlaying && (
-          <TimerButton
-            icon="play"
-            onPress={() => {
-              setIsPlaying(true);
-            }}
-          />
-        )}
-        {showPause && (
           <>
+            <TimerButton
+              icon="play"
+              onPress={() => {
+                setIsPlaying(true);
+              }}
+            />
             <TimerButton
               icon="skip-forward"
               onPress={() => {
                 refreshTimer(true);
-                setIsPlaying(true);
+                setIsPlaying(false);
               }}
             />
+          </>
+        )}
+        {showPause && (
+          <>
             <TimerButton
               icon="square"
               onPress={() => {
@@ -64,6 +66,13 @@ export const Timer: React.FunctionComponent<TimerProps> = ({
               }}
             />
             <TimerButton icon="pause" onPress={() => setIsPlaying(false)} />
+            <TimerButton
+              icon="skip-forward"
+              onPress={() => {
+                refreshTimer(true);
+                setIsPlaying(true);
+              }}
+            />
           </>
         )}
         {!showStart && !showPause && (

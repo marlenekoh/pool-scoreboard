@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useElapsedTime } from "use-elapsed-time";
 // @ts-ignore
 import AnimatedProgressWheel from "react-native-progress-wheel";
 
-import { Text } from "@components/Text";
 import { Colors } from "@common/Colors";
 import { Input } from "@components/Input";
 
@@ -45,8 +44,8 @@ export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
       <AnimatedProgressWheel
         size={TIMER_WHEEL_SIZE}
         width={10}
-        color={Colors.secondary}
-        backgroundColor={Colors.primary}
+        color={remainingTime < 5 ? Colors.warning2 : Colors.secondary}
+        backgroundColor={remainingTime < 5 ? Colors.warning : Colors.primary}
         progress={progress}
       />
       <TimerTextContainer>
