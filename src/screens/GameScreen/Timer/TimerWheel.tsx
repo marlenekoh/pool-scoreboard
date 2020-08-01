@@ -38,24 +38,41 @@ export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
   const remainingTimeCeil = Math.ceil(remainingTime);
   const progress = 100 - (remainingTime / duration) * 100;
 
-  if (remainingTimeCeil === 0) {
-    refreshTimer(true);
-  }
+  // if (remainingTimeCeil === 0) {
+  //   refreshTimer(true);
+  // }
 
   const playBeepOnce = async () => {
-    const beep = await Sound.Beep;
-    await beep.setPositionAsync(0);
-    await beep.playAsync();
+    const { Beep } = await Sound;
+    await Beep.setPositionAsync(0);
+    await Beep.playAsync();
+  };
+
+  const playBeepLongOnce = async () => {
+    const { BeepLong } = await Sound;
+    await BeepLong.setPositionAsync(0);
+    await BeepLong.playAsync();
+    BeepLong.setOnPlaybackStatusUpdate(playbackStatus => {
+      if (playbackStatus.isLoaded && playbackStatus.didJustFinish) {
+        refreshTimer(true);
+      }
+    });
   };
 
   useEffect(() => {
     if (
       isPlaying &&
-      remainingTimeCeil <= 5 &&
       remainingTimeCeil > 0 &&
-      START_BEEPING_AT - remainingTimeCeil === soundPlayCount
+      remainingTimeCeil <= 5 &&
+      soundPlayCount === START_BEEPING_AT - remainingTimeCeil
     ) {
       playBeepOnce();
+      setSoundPlayCount(soundPlayCount + 1);
+    } else if (
+      remainingTimeCeil === 0 &&
+      soundPlayCount !== START_BEEPING_AT + 1
+    ) {
+      playBeepLongOnce();
       setSoundPlayCount(soundPlayCount + 1);
     }
   }, [isPlaying, remainingTimeCeil]);

@@ -1,12 +1,15 @@
 import { Audio } from "expo-av";
 
-const initializeSound = async (sound: string) => {
-  const mySound = new Audio.Sound();
-  await mySound.loadAsync(require("../../../assets/sounds/beep.mp3"));
-  await mySound.setVolumeAsync(1);
-  return mySound;
+const initSounds = async () => {
+  const Beep = new Audio.Sound();
+  await Beep.loadAsync(require("../../../assets/sounds/beep.mp3"));
+  await Beep.setVolumeAsync(1);
+
+  const BeepLong = new Audio.Sound();
+  await BeepLong.loadAsync(require("../../../assets/sounds/beep-long.mp3"));
+  await BeepLong.setVolumeAsync(1);
+
+  return { Beep, BeepLong };
 };
 
-const Beep = initializeSound("beep");
-
-export const Sound = { Beep };
+export const Sound = initSounds();
