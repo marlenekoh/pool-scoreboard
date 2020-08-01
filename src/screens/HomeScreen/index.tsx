@@ -3,7 +3,7 @@ import { NavigationScreenProp } from "react-navigation";
 
 import { Button } from "@components/Button";
 import { Text } from "@components/Text";
-import { Routes } from "@screens/Routes";
+import { Routes } from "@common/Routes";
 
 import { HomeScreenContainer } from "./HomeScreenContainer";
 

@@ -1,78 +1,59 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import React, { useState } from "react";
+
 import { Input } from "@components/Input";
-import { Score } from "@screens/GameScreen/Score";
+import { Colors } from "@common/Colors";
+
+import { Score } from "./Score";
+import { Foul } from "./Foul";
 import { PlayerContainer } from "./PlayerContainer";
+import { NameInputContainer } from "./NameInputContainer";
 
-const AERON = "../../../components/Images/Aeron_drunk.jpeg";
-
-const CROSS = "../../../components/Images/hackathon_cross.png";
-
-interface Player {
-  playerNumber: number;
+interface PlayerProps extends React.ComponentProps<typeof Score> {
+  index: number;
+  isCurrent: boolean;
 }
 
-export const Player: React.FunctionComponent<Player> = ({ playerNumber }) => {
-  const [isFoul1, setIsFoul1] = useState(false);
-  const [isFoul2, setIsFoul2] = useState(false);
-  const [isFoul3, setIsFoul3] = useState(false);
-  const noFouls = () => {
-    setIsFoul1(true);
-    setIsFoul2(true);
-    setIsFoul3(true);
-  };
-  const activateFoul1 = () => {
-    if (isFoul2 && isFoul3) {
-      setIsFoul1(!isFoul1);
-    }
-  };
-  const activateFoul2 = () => {
-    if (!isFoul1 && isFoul3) {
-      setIsFoul2(!isFoul2);
-    }
-  };
-  const activateFoul3 = () => {
-    if (!(isFoul1 || isFoul2)) {
-      setIsFoul3(!isFoul3);
-    }
-  };
-  return (
-    <PlayerContainer>
-      <Input
-        label={`Player ${playerNumber}`}
-        placeholder={`Player ${playerNumber}`}
-      />
-      <Score maxValue={5} />
+export const Player: React.FunctionComponent<PlayerProps> = ({
+  index,
+  isCurrent,
+  ...otherProps
+}) => {
+  const [name, setName] = useState(`Player ${index}`);
+  const [key, setKey] = useState("0");
+  const shadowStyle = isCurrent
+    ? {
+        shadowColor: Colors.black,
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
 
-      <View>
-        <View style={{ flexDirection: "row", margin: 10 }}>
-          <Text>Foul</Text>
-          <TouchableOpacity onPress={noFouls}>
-            <Icon name="refresh" size={20} color="black" />
-          </TouchableOpacity>
-        </View>
-        <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity onPress={activateFoul1}>
-            <Image
-              style={{ height: 50, width: 50 }}
-              source={isFoul1 ? require(AERON) : require(CROSS)}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={activateFoul2}>
-            <Image
-              style={{ height: 50, width: 50 }}
-              source={isFoul2 ? require(AERON) : require(CROSS)}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={activateFoul3}>
-            <Image
-              style={{ height: 50, width: 50 }}
-              source={isFoul3 ? require(AERON) : require(CROSS)}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
+        elevation: 4,
+      }
+    : {};
+
+  const reset = () => {
+    setKey(new Date().getTime().toString());
+  };
+
+  return (
+    <PlayerContainer style={shadowStyle} isCurrentPlayer={isCurrent}>
+      <NameInputContainer>
+        <Input
+          bold
+          selectTextOnFocus
+          showSubmitButtonOnFocus
+          size="medium"
+          autoCorrect={false}
+          placeholder={`Name`}
+          onChangeText={text => setName(text)}
+          value={name}
+        />
+      </NameInputContainer>
+      <Score {...otherProps} />
+      <Foul />
     </PlayerContainer>
   );
 };
