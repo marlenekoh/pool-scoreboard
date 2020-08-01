@@ -66,5 +66,3 @@ export const GameScreen: React.FunctionComponent<GameScreenProps> = ({
     </GameScreenContainer>
   );
 };
-
-const styles = StyleSheet.create({});
