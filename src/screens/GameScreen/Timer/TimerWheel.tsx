@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useElapsedTime } from "use-elapsed-time";
 // @ts-ignore
 import AnimatedProgressWheel from "react-native-progress-wheel";
@@ -8,6 +8,7 @@ import { Input } from "@components/Input";
 
 import { TimerWheelContainer } from "./TimerWheelContainer";
 import { TimerTextContainer } from "./TimerTextContainer";
+import { Sound } from "@components/Sound";
 
 interface TimerWheelProps {
   isPlaying: boolean;
@@ -19,6 +20,7 @@ interface TimerWheelProps {
 }
 
 const TIMER_WHEEL_SIZE = 180;
+const START_BEEPING_AT = 5;
 
 export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
   isPlaying,
@@ -27,6 +29,7 @@ export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
   onDurationChange,
   refreshTimer,
 }) => {
+  const [soundPlayCount, setSoundPlayCount] = useState(0);
   const durationMilliseconds = duration * 1000;
   const elapsedTime = useElapsedTime(isPlaying, {
     durationMilliseconds,
@@ -38,6 +41,24 @@ export const TimerWheel: React.FunctionComponent<TimerWheelProps> = ({
   if (remainingTimeCeil === 0) {
     refreshTimer(true);
   }
+
+  const playBeepOnce = async () => {
+    const beep = await Sound.Beep;
+    await beep.setPositionAsync(0);
+    await beep.playAsync();
+  };
+
+  useEffect(() => {
+    if (
+      isPlaying &&
+      remainingTimeCeil <= 5 &&
+      remainingTimeCeil > 0 &&
+      START_BEEPING_AT - remainingTimeCeil === soundPlayCount
+    ) {
+      playBeepOnce();
+      setSoundPlayCount(soundPlayCount + 1);
+    }
+  }, [isPlaying, remainingTimeCeil]);
 
   return (
     <TimerWheelContainer size={TIMER_WHEEL_SIZE}>
